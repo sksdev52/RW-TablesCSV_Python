@@ -100,7 +100,7 @@ def get_table_single_title(datafile=str,title =str):
         found_title = False
         for row in reader:
             if len(row) >0:
-                if row == title:
+                if row[0] == title:
                     found_title = True
                     for row in reader:
                         if not any(cell.strip() for cell in row):
@@ -115,7 +115,7 @@ def get_table_single_title(datafile=str,title =str):
                     if not found_title:
                         if len(row) >0: # To avoid an error in case of a blank row
                             if row[0] == title:
-                                print("Title: ",row)
+                                #print("Title: ",row)
                                 #found_title = True
                                 for row in reader:
                                     if not any(cell.strip() for cell in row):
