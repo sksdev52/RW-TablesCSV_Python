@@ -137,12 +137,10 @@ def get_table_with_subtitle_column_title(datafile=str, subtitle= str, coltl =str
         for row in reader:
             if len(row) >0: # To skip blank row
                 if row[0] == subtitle:
-                    #print("Subtitle Found", row[0])
                     found_subtitle = True
                     if found_subtitle == True:
                         hdr3 = next(reader) # Find the column title
                         if hdr3[0]  == coltl: # If the 1st element of header 3 is column title
-                            #print("Column Title", hdr3[0])
                             for row in reader:
                                 if not any(cell.strip() for cell in row):
                                     break
@@ -155,12 +153,10 @@ def get_table_with_subtitle_column_title(datafile=str, subtitle= str, coltl =str
                     found_subtitle == False
                     hdr1a = next(reader) # Find subtitle
                     if hdr1a == subtitle:   # If subtitle is also found
-                        #print("Subtitle Found", hdr1a)
                         found_subtitle = True
                         if found_subtitle == True:
                             hdr3 = next(reader) # Find the column title
                             if hdr3[0]  == coltl: # If the 1st element of header 3 is column title
-                                print("Column Title", hdr3[0])
                                 for row in reader:
                                     if not any(cell.strip() for cell in row):
                                         break
