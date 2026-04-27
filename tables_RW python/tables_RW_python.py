@@ -342,6 +342,53 @@ with open (fileout, 'a') as csvfile: # Append mode
             csvwriter.writerow(blank)
             print(f"{months[b]};{yr_title[a]}: saved to disk") # Might be useful for longer files
 print("Data Written to: ", fileout)
+
+w_day =["W1","W2","W3","W4", "W5"]
+fileout = "nested_values _indictionaries.json"
+
+with open(fileout, "w",encoding="utf-8") as outfile:
+    
+    
+    for a in range (0,len(yr_title)):
+            yrlst= []
+            hdr101 = str(yr_title[a])
+            json_yr= {hdr101: yrlst}
+            
+            for b in range(0,len(months)):
+                mnlst= []
+                month = str(months[b])
+                json_mnth = {month: mnlst}
+                yrlst.append(json_mnth)
+                
+                tbl_in= get_table_with_title_subtitle_header("testfile2.csv", yr_title[a], months[b], "W1") # "W1" is the column title
+                calc = table_rows_mean_std_median(tbl_in)
+                calc = convert_table_to_string(calc) # To save memory if needed or comment out
+                
+                for c in range (0, len(calc[0])):
+                    daylst= []
+                    json_wday ={str(w_day[c]): daylst}
+                    mnlst.append(json_wday)
+                    
+                    stlst= []
+                    for d in range (0, len(w_day)):
+                        
+                        stats ={str(col_to_add[d]):  calc[d][c]}
+                        stlst.append(stats)
+                        daylst.append(stats)
+    
+                           
+            json.dump(json_yr, outfile, indent =2) # This indentation is important
+                    
+                        
+                    
+              
+with open ("nested_values _indictionaries.json", 'r') as infile:
+    indata = json.load(infile)
+print("Data file opened")
+
+print(indata["2026"][1]["March"][1]) # 2026 is the dictionary name, [] is the month, "March" is the dictionary in list and the next [] is the day in dictionary
+       # In year '2026' look at the [1st month which is March in this case]["In March look at day][1 which is day 2]
+
             
         
         
