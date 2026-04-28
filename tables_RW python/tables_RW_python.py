@@ -391,7 +391,16 @@ print("Data file opened")
 print(indata["2026"][1]["March"][1]) # 2026 is the dictionary name, [] is the month, "March" is the dictionary in list and the next [] is the day in dictionary
        # In year '2026' look at the [1st month which is March in this case]["In March look at day][1 which is day 2]
 
-            
+def indexify (lst=[]):
+    to_send ={}
+    for i in range (0, len(lst)):
+        new = {str(lst[i]) : i}
+        to_send.update(new)
+    return to_send
+       
+mn = indexify (months)
+wd = indexify (w_day)
+print(indata["2026"][mn.get("March")]['March'][wd.get("W2")])       
         
         
 
