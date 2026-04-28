@@ -4,6 +4,8 @@
 import csv
 from csv import DictReader
 from typing import List, Dict
+import json
+import os
 
 
 def get_matrix_nosubheader(datafile=str): # Reads a table with no title, sub-title or header
