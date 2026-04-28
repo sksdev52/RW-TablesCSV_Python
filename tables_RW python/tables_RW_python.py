@@ -372,7 +372,7 @@ with open(fileout, "w",encoding="utf-8") as outfile:
                     mnlst.append(json_wday)
                     
                     stlst= []
-                    for d in range (0, len(w_day)):
+                    for d in range (0, len(col_to_add)):
                         
                         stats ={str(col_to_add[d]):  calc[d][c]}
                         stlst.append(stats)
