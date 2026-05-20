@@ -1,5 +1,6 @@
 #Python 3.14.2
 import csv
+import copy
 #import json
 #import os
 def table_transpose(a=[]):
@@ -168,7 +169,7 @@ def calculations_on_dictionary_values (lst_of_dcts = [{},{}]): # A list of dicti
     for i in range(0, len(lst_of_dcts)):
         for vlst in lst_of_dcts[i].values():
             stat_lst = []
-            calc = (vlst)
+            calc = copy.deepcopy(vlst) # Required so that the order of original data in columns is not altered.
             add= sum(calc)
             mean= add/len(calc)
             average = {"mean": str(mean)}
